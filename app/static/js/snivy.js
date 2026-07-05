@@ -6,6 +6,24 @@
         cancle:"BACK"
     }
 
+    // Widget open/close toggle
+    let isChatOpen = false;
+
+    function toggleChat(){
+        const chatwindow = document.getElementById("chatwindow");
+        const toggleBtn = document.getElementById("chatToggleBtn");
+
+        isChatOpen = !isChatOpen;
+
+        if(isChatOpen){
+            chatwindow.classList.add("chat-visible");
+            toggleBtn.classList.add("hide");
+        } else {
+            chatwindow.classList.remove("chat-visible");
+            toggleBtn.classList.remove("hide");
+        }
+    }
+
     function getCurrentNode(){
         return flow[state.currentNode]
     }

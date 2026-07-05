@@ -20,32 +20,129 @@
 }
 
 /* chatbot-basic UI starts */
-.chatbot{
-    display: flex;
-    align-items: center;
-    justify-content:center ;
-    
+
+html, body{
+    height: 100%;
+}
+
+body{
     font-size: 14px;
-    font-family: system-ui, -apple-system,sans-serif;
-    color:#1C1917;;
+    font-family: system-ui, -apple-system, sans-serif;
+    color:#1C1917;
+}
 
-    min-height: 640px;
-    background:var(--sec-b) ;
-    padding: 2rem 1rem;
-
+/* Fixed wrapper anchored to bottom-right of the viewport, on every device */
+.chatbot{
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 999998;
 }
 
 .chatwindow{
     display: flex;
     flex-direction: column;
-    
+
     width: 340px;
     height: 560px;
-    
+
     background: white;
     box-shadow: var(--shadow2);
     border-radius: 20px;
     overflow: hidden;
+
+    /* closed state — hidden + shrunk, animates in/out */
+    transform-origin: bottom right;
+    transform: scale(0.85) translateY(24px);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: transform 0.28s cubic-bezier(0.34, 1.2, 0.64, 1),
+                opacity 0.22s ease,
+                visibility 0.28s;
+}
+
+.chatwindow.chat-visible{
+    transform: scale(1) translateY(0);
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+}
+
+/* Floating toggle button, bottom-right on every device */
+.chat-toggle-btn{
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 58px;
+    height: 58px;
+    border-radius: 50%;
+    border: none;
+    outline: none;
+    cursor: pointer;
+
+    background: var(--pri-b);
+    color: var(--sec-b);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    box-shadow: var(--shadow2);
+    z-index: 999999;
+
+    transition: transform 0.25s ease, opacity 0.2s ease, visibility 0.25s;
+}
+
+.chat-toggle-btn:hover{
+    transform: scale(1.08);
+}
+
+.chat-toggle-btn.hide{
+    transform: scale(0.4);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+/* Tablet: slightly smaller widget so it never crowds the screen edge */
+@media (max-width: 768px){
+    .chatwindow{
+        width: 92vw;
+        max-width: 380px;
+        height: 75vh;
+        max-height: 620px;
+    }
+}
+
+/* Mobile: full-screen widget, no rounded corners, edge-to-edge */
+@media (max-width: 480px){
+    .chatbot{
+        bottom: 0;
+        right: 0;
+        left: 0;
+        top: 0;
+    }
+
+    .chatwindow{
+        width: 100vw;
+        height: 100vh;
+        height: 100dvh; /* accounts for mobile browser UI chrome */
+        max-width: none;
+        max-height: none;
+        border-radius: 0;
+        transform-origin: center;
+        transform: scale(0.95);
+    }
+
+    .chatwindow.chat-visible{
+        transform: scale(1);
+    }
+
+    .chat-toggle-btn{
+        bottom: 16px;
+        right: 16px;
+    }
 }
 
 /* chatbot-basic UI ends */
