@@ -1,0 +1,72 @@
+<html>
+<head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/snivy.css') }}">
+</head>
+<body>
+    
+    <div class="chatbot">
+    <div class="chatwindow">
+        
+        <header class="chat-header">
+            
+            <div class="bot-info">
+                <div class="avtar">S</div>
+                <div class="bot-i">
+                    <div class="bot-name">Snivy</div>
+                    <div class="bot-des">Virtual Assitent - made by Yuvi</div>
+                </div>
+            </div>   
+            <div class="close-btn">&times;</div>   
+        
+        </header>
+        
+        <main class="chat-main">
+            <div class="today">Today</div>
+            <div class="messages" id="message"></div>
+             <div class="suggestions" id="suggest"></div>
+             <!-- Add this AFTER the <div class="suggestions" id="suggest"></div> line -->
+
+            <!-- Form for Complaints -->
+            <div class="form-container" id="complaintForm" style="display:none;">
+                <h3>Submit Your Complaint</h3>
+                <textarea  id="complaintText" placeholder="Please describe your complaint" required></textarea>
+                <button onclick="submitComplaint()">Submit Complaint</button>
+                <button onclick="cancelForm()">Cancel</button>
+            </div>
+
+            <!-- Form for Booking Issues -->
+            <div class="form-container" id="bookIssueForm" style="display:none;">
+                <h3>Submit Your Book Issue</h3>
+                <textarea  id="bookIssueText" placeholder="Please describe your booking issue" required></textarea>
+                <button onclick="submitBookIssue()">Submit Book Issue</button>
+                <button onclick="cancelForm()">Cancel</button>
+            </div>
+
+            <!-- Form for Contact Messages -->
+            <div class="form-container" id="messageForm" style="display:none;">
+                <h3>Send Us a Message</h3>
+                <textarea id="messageText" placeholder="Your message here" required></textarea>
+                <button onclick="submitMessage()">Send Message</button>
+                <button onclick="cancelForm()">Cancel</button>
+            </div>
+
+            <!-- Form for Delete Requests -->
+            <div class="form-container" id="deleteForm" style="display:none;">
+                <h3>Request Deletion</h3>
+                <input type="text" id="deleteText" placeholder="EX:cp-H722NRAZ" required>
+                <button onclick="submitDelete()">Submit Request</button>
+                <button onclick="cancelForm()">Cancel</button>
+            </div>
+
+        </main>    
+        
+    </div>    
+</div>    
+
+    <script src="{{ url_for('static', filename='js/snivy.js') }}"></script>
+    
+</body>
+
+</html>
+
+

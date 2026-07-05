@@ -1,0 +1,2 @@
+FLASK_APP=snivy.py
+FLASK_ENV=development
